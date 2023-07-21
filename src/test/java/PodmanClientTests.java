@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class PodmanClientTests {
 
-    public static final String PODMAN_SOCK = "unix:///run/user/1000/podman/podman.sock";
+    public static final String PODMAN_SOCK = System.getenv().getOrDefault("DOCKER_URI", "unix:///run/user/1000/podman/podman.sock");
 
     @Test
     public void testZerodepPodmanIssue() throws InterruptedException {
