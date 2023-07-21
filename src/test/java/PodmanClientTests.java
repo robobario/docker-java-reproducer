@@ -2,6 +2,7 @@ import com.github.dockerjava.transport.DockerHttpClient;
 import com.github.dockerjava.zerodep.TweakedDockerHttpClient;
 import com.github.dockerjava.zerodep.ZerodepDockerHttpClient;
 import com.github.dockerjava.zerodep.shaded.org.apache.hc.core5.util.TimeValue;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
@@ -23,6 +24,8 @@ public class PodmanClientTests {
         testRequestsWithDelay(client, 11000);
     }
 
+    // stale connection checking blocks in isStale while the connection is alive, so it's not viable
+    @Disabled
     @Test
     public void testTweakedFailsIfStaleCheckGreaterThanPodmanIdleTimeoutAndDelay() throws InterruptedException {
         TimeValue validateAfterInactivity = TimeValue.ofSeconds(15);
@@ -32,6 +35,8 @@ public class PodmanClientTests {
     }
 
 
+    // stale connection checking blocks in isStale while the connection is alive, so it's not viable
+    @Disabled
     @Test
     public void testTweakedWithConnectionStaleCheckSucceedsWhenStaleCheckLessThanPodmanIdleTimeout() throws InterruptedException {
         TimeValue validateAfterInactivity = TimeValue.ofSeconds(8);
